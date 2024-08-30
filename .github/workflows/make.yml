@@ -10,7 +10,7 @@ jobs:
       - uses: actions/checkout@v3
       - run: brew install libffi gettext glib pkg-config pixman ninja meson
       - run: brew install tree
-      - run: tree /opt/homebrew/opt
+      - run: find /opt/homebrew/ -name '*.a'
       - run: ./configure --extra-ldflags="-l:libgnutls.a"
       - run: make
       - run: mkdir _site/

@@ -10,8 +10,8 @@ jobs:
       - uses: actions/checkout@v3
       - run: |
           brew install libffi gettext glib pkg-config pixman ninja meson llvm
-          export PATH="/usr/local/opt/llvm/bin:$PATH"
-          ./configure --static --cc=clang-7 --cxx=clang++-7 --host-cc=clang-7 --extra-cflags=-mavx2 --extra-cxxflags="-I/usr/local/opt/llvm/include" --extra-ldflags="-L/usr/local/opt/llvm/lib -L/usr/local/opt/libffi/lib -L/usr/local/opt/llvm/lib -Wl,-rpath,/usr/local/opt/llvm/lib"
+          export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
+          ./configure --static --cc=clang --cxx=clang++ --host-cc=clang --extra-cflags=-mavx2 --extra-cxxflags="-I/opt/homebrew/opt/llvm/include" --extra-ldflags="-L/opt/homebrew/opt/llvm/lib"
           make
           mkdir _site/
           echo '<a href="qemu-macos.tar.gz">DOWNLOAD</a>' > _site/index.html

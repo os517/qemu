@@ -1,0 +1,9 @@
+name: BUILD
+on: workflow_dispatch
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: brew install libffi gettext glib pkg-config pixman ninja meson
+      - run: ./configure

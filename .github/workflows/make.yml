@@ -8,11 +8,13 @@ jobs:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v3
-      - run: brew install libffi gettext glib pkg-config pixman ninja meson
-      - run: ./configure --static
-      - run: make
-      - run: mkdir _site/
-      - run: echo '<a href="qemu-macos.tar.gz">DOWNLOAD</a>' > _site/index.html
-      - run: tar czvf _site/qemu-macos.tar.gz build/
+      - run: |
+          brew install libffi gettext glib pkg-config pixman ninja meson llvm
+          export PATH="/usr/local/opt/llvm/bin:$PATH"
+          ./configure --static --cc=clang-7 --cxx=clang++-7 --host-cc=clang-7 --extra-cflags=-mavx2 --extra-cxxflags="-I/usr/local/opt/llvm/include" --extra-ldflags="-L/usr/local/opt/llvm/lib -L/usr/local/opt/libffi/lib -L/usr/local/opt/llvm/lib -Wl,-rpath,/usr/local/opt/llvm/lib"
+          make
+          mkdir _site/
+          echo '<a href="qemu-macos.tar.gz">DOWNLOAD</a>' > _site/index.html
+          tar czvf _site/qemu-macos.tar.gz build/
       - uses: actions/upload-pages-artifact@v3
       - uses: actions/deploy-pages@v4

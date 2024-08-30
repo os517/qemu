@@ -12,7 +12,7 @@ jobs:
       - run: ./configure
       - run: make
       - run: mkdir _site/
-      - run: echo '<a href="/qemu-macos.tar.gz">DOWNLOAD</a>' > _site/index.html
+      - run: echo '<a href="qemu-macos.tar.gz">DOWNLOAD</a>' > _site/index.html
       - run: tar czvf _site/qemu-macos.tar.gz build/
       - uses: actions/upload-pages-artifact@v3
       - uses: actions/deploy-pages@v4

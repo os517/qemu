@@ -11,6 +11,9 @@ jobs:
       - run: |
           brew install libffi gettext glib pkg-config pixman ninja meson llvm
           export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
+          which clang
+          which clang++
+          ls /opt/homebrew/opt/llvm/bin
           ./configure --static --cc=clang --cxx=clang++ --host-cc=clang --extra-cflags=-mavx2 --extra-cxxflags="-I/opt/homebrew/opt/llvm/include" --extra-ldflags="-L/opt/homebrew/opt/llvm/lib"
           make
           mkdir _site/

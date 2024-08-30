@@ -1,10 +1,10 @@
-name: BUILD
+name: make
 on: workflow_dispatch
 permissions:
   pages: write
   id-token: write
 jobs:
-  build:
+  make:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v3
